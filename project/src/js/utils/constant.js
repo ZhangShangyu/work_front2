@@ -1,8 +1,8 @@
-const LOCAL_HOST = 'http://localhost:8080'
+const LOCAL_HOST = 'http://localhost:8090'
 
 const REMOTE = 'http://118.89.161.69/api2/'
 
-const API = REMOTE
+const API = LOCAL_HOST
 
 const rentPriceOptions = [
   {value: 0, label: '不限'},
@@ -37,16 +37,24 @@ const typeOptionsForUpload = [
 ]
 
 
+const sortOptions = [
+  {value: 'a', label: '发布时间'},
+  {value: 'b', label: '面积'},
+  {value: 'c', label: '价格'},
+]
+
+
 const MAP_KEY = 'b68328f20e4239926ef3a17fbec30f7a'
 const LON_LAT_KEY = '7d553805f6fa2d91c6c71e1b44ac88c2'
 
 const Constant = {
   API: API,
-  PIC_UPLOAD_API: 'http://118.89.161.69/up2/house/upload',
+  PIC_UPLOAD_API: LOCAL_HOST + '/house/upload',
   USER_INFO: 'userInfo',
   RENT_PRICE_OPTIONS: rentPriceOptions,
   AREA_OPTIONS: areaOptions,
   TYPE_OPTIONS: typeOptions,
+  SORT_OPTIONS: sortOptions,
   TYPE_OPTIONS_UPLOAD: typeOptionsForUpload,
   MAP_KEY,
   LON_LAT_KEY,

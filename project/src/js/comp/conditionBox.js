@@ -8,9 +8,11 @@ export default class ConditionBox extends React.Component {
       priceClickedIndex: 0,
       areaClickedIndex: 0,
       typeClickedIndex: 0,
+      sortClickedIndex: 0,
       priceValue: 0,
       areaValue: 0,
       typeValue: 0,
+      sortValue: 0,
     }
   )
 
@@ -34,22 +36,21 @@ export default class ConditionBox extends React.Component {
       case 'price':
         this.setState({
           priceClickedIndex: index, priceValue: value,
-          areaClickedIndex: 0, areaValue: 0,
-          typeClickedIndex: 0, typeValue: 0
         }, () => this.setSearchCondition())
         break
       case 'area':
         this.setState({
           areaClickedIndex: index, areaValue: value,
-          priceClickedIndex: 0, priceValue: 0,
-          typeClickedIndex: 0, typeValue: 0
         }, () => this.setSearchCondition())
         break;
       case 'type':
         this.setState({
           typeClickedIndex: index, typeValue: value,
-          priceClickedIndex: 0, priceValue: 0,
-          areaClickedIndex: 0, areaValue: 0,
+        }, () => this.setSearchCondition())
+        break
+      case 'sort':
+        this.setState({
+          sortClickedIndex: index, sortValue: value,
         }, () => this.setSearchCondition())
         break
       default:
@@ -60,11 +61,12 @@ export default class ConditionBox extends React.Component {
 
   setSearchCondition = () => {
     let condition = {}
-    let {priceValue, areaValue, typeValue} = this.state
+    let {priceValue, areaValue, typeValue, sortValue} = this.state
 
     areaValue !== 0 ? condition.areaType = areaValue : ''
     priceValue !== 0 ? condition.priceType = priceValue : ''
     typeValue !== 0 ? condition.roomType = typeValue : ''
+    sortValue !== 0 ? condition.sortType = sortValue : ''
 
     this.props.setSearchCondition(condition)
   }
@@ -76,6 +78,7 @@ export default class ConditionBox extends React.Component {
       price: state.priceClickedIndex,
       area: state.areaClickedIndex,
       type: state.typeClickedIndex,
+      sort: state.sortClickedIndex,
     }
     if (index === dict[type]) {
       colorStyle.color = 'blue'
@@ -106,6 +109,9 @@ export default class ConditionBox extends React.Component {
 
     const typeOptions = Constant.TYPE_OPTIONS
 
+    const sortOptions = Constant.SORT_OPTIONS
+
+
     const priceList = priceOptions.map((item, index) => (
         <span key={index}
               onClick={this.onConditionClick.bind(this, item.value, index, 'price')}>
@@ -130,6 +136,13 @@ export default class ConditionBox extends React.Component {
       )
     )
 
+    const sortList = sortOptions.map((item, index) => (
+        <span key={index}
+              onClick={this.onConditionClick.bind(this, item.value, index, 'sort')}>
+          <a style={this.getClickStyle(index, 'sort')}>{item.label}</a> &nbsp;&nbsp;
+        </span>
+      )
+    )
 
     return (
       <Card title="筛选条件">
@@ -145,6 +158,10 @@ export default class ConditionBox extends React.Component {
           <div style={styles.div}>
             <span style={styles.span}>户型：</span>
             {typeList}
+          </div>
+          <div style={styles.div}>
+            <span style={styles.span}>排序：</span>
+            {sortList}
           </div>
         </div>
       </Card>
