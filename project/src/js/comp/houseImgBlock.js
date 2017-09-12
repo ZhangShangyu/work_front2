@@ -37,7 +37,7 @@ export default class HouseImgBlock extends React.Component {
           houses = response.data
         } else {
           currentPageNum = this.state.currentPageNum + 1;
-          houses = this.state.houses.concat(response.data)
+          houses = response.data
         }
         this.setState({houses, currentPageNum, showLoading: false})
       }
@@ -118,7 +118,7 @@ export default class HouseImgBlock extends React.Component {
       : showLoading ? (<Spin tip="加载中"/>) : (<p style={{color: 'red'}}>抱歉，没有符合条件的结果...</p>)
 
     const loadAnother = houses.length
-      ? (<div style={styles.loadAnother} onClick={this.getNextPageContent}>加载更多</div>)
+      ? (<div style={styles.loadAnother} onClick={this.getNextPageContent}>下一页</div>)
       : ''
 
     return (
