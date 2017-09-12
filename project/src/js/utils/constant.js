@@ -38,9 +38,12 @@ const typeOptionsForUpload = [
 
 
 const sortOptions = [
-  {value: 'a', label: '发布时间'},
-  {value: 'b', label: '面积'},
-  {value: 'c', label: '价格'},
+  {value: 'a', label: '发布时间降序'},
+  {value: 'b', label: '面积降序'},
+  {value: 'c', label: '价格降序'},
+  {value: 'd', label: '发布时间升序'},
+  {value: 'e', label: '面积升序'},
+  {value: 'f', label: '价格升序'},
 ]
 
 
